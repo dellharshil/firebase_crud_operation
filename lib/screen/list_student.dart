@@ -5,15 +5,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'dart:async';
 class ListStudent extends StatefulWidget {
   const ListStudent({Key? key}) : super(key: key);
-
   @override
   State<ListStudent> createState() => _ListStudentState();
 }
-
 class _ListStudentState extends State<ListStudent> {
-
   final firestore1=FirebaseFirestore.instance.collection("student").snapshots();
-
   Future<void> delateuser(id){
   //print('user id $id');
     return FirebaseFirestore.instance.collection('student').doc(id).delete()
@@ -25,7 +21,6 @@ class _ListStudentState extends State<ListStudent> {
     return StreamBuilder<QuerySnapshot>(
       stream: firestore1,
         builder:(context,AsyncSnapshot<QuerySnapshot> snapshot) {
-
           if(snapshot.hasError){
             print("Somthing went wrong") ;
           }
@@ -38,7 +33,6 @@ class _ListStudentState extends State<ListStudent> {
             store.add(a);
             a['id']=documentSnapshot.id;
           }).toList();
-
           return Container(
             margin: EdgeInsets.symmetric(horizontal: 10,vertical: 20),
             child: SingleChildScrollView(
@@ -99,6 +93,5 @@ class _ListStudentState extends State<ListStudent> {
           );
         },
     );
-
   }
 }
